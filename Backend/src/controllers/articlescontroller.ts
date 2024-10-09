@@ -1,7 +1,7 @@
 import { before, DELETE, GET, POST, PUT, route } from "awilix-express";
 import { Request, Response } from "express";
 import { ArticlesServiceIfs } from "../services/articlesserviceIfs";
-import { ArticlesResponse } from "./customresponses/articlesresponse";
+import { ArticlesResponse } from "./responses/articlesresponse";
 import { RequestValidatorIfs } from "./validators/requestvalidatorIfs";
 
 const ACCEPT_LANGUAGE_HEADER = 'Accept-Language';
