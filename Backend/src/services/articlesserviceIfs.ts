@@ -1,3 +1,3 @@
-export interface ArticlesServiceIfs { 
-    getArcicleContent(articleName : string) : Promise<string>;
+export interface ArticlesServiceIfs {
+    getArcicleContent(articleName: string, language: string): Promise<string>;
 }

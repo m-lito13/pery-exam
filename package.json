@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@tsed/exceptions": "^7.83.3"
+  }
+}
