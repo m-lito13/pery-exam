@@ -1,9 +1,18 @@
+import { TokenManagerIfs } from "../tokenmanagerIfs";
 import { UserTokenServiceIfs } from "../usertokenserviceifs";
-import { v4 as uuidv4 } from 'uuid';
 
 export class UserTokenService implements UserTokenServiceIfs {
+    private tokenManager : TokenManagerIfs;
+    constructor(tokenManager : TokenManagerIfs) { 
+        this.tokenManager = tokenManager;
+    }
+
+    isValidToken(token: string, language: string): boolean {
+        console.log('UserTokenService - isValidToken called');
+        return this.tokenManager.isValidToken(token, language);
+    }
     generateToken(userName : string , language : string): string {
-        let randomUuid = uuidv4();
-        return randomUuid;
+        console.log('UserTokenService - generateToken called');
+        return this.tokenManager.generateToken(userName, language);
     } 
 }
