@@ -4,6 +4,7 @@ import { loadContainer } from "./container";
 import { errorHandlerMiddleware } from "./middlewares/errorhandlermiddleware";
 
 const app: express.Application = express();
+const PORT = 3001;
 app.use(express.json());
 loadContainer(app);
 app.use(loadControllers(
@@ -12,6 +13,6 @@ app.use(loadControllers(
 ));
 app.use(errorHandlerMiddleware);
 
-app.listen(3000, () => {
-    console.log("Server is running on port 3000");
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
