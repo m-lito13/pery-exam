@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@tsed/exceptions": "^7.83.3",
+    "@types/html-to-text": "^9.0.4",
+    "html-to-text": "^9.0.5",
+    "uuid": "^10.0.0"
+  },
+  "devDependencies": {
+    "@types/uuid": "^10.0.0"
+  }
+}
