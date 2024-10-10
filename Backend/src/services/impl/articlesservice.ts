@@ -1,17 +1,18 @@
 import { ArticlesServiceIfs } from "../articlesserviceIfs";
-
-import { htmlToText } from "html-to-text";
 import { CacheManagerIfs } from "../cachemanagerIfs";
 import { ArticleDTO } from "../../dto/articledto";
 import { DateHelper } from "../datehelper";
+import { RemoteContentManagerIfs } from "../remotecontentmanagerifs";
 
 const MAX_DATE_DIFF = 300;
 
 export class ArticlesService implements ArticlesServiceIfs {
     private cacheManager: CacheManagerIfs;
     private dateHelper: DateHelper;
-    constructor(cacheManager: CacheManagerIfs) {
+    private remoteContentManager: RemoteContentManagerIfs;
+    constructor(cacheManager: CacheManagerIfs, remoteContentManager: RemoteContentManagerIfs) {
         this.cacheManager = cacheManager;
+        this.remoteContentManager = remoteContentManager;
         this.dateHelper = new DateHelper();
     }
 
@@ -20,21 +21,21 @@ export class ArticlesService implements ArticlesServiceIfs {
         if (itemFromCache) {
             console.log(`from cache ${articleName} ${language}`);
             itemFromCache.scrapeDate = requestLocalDate.getTime();
-            this.updateCache(itemFromCache, language);    
+            this.updateCache(itemFromCache, language);
             return itemFromCache;
         }
         else {
             console.log(`from service ${articleName} ${language}`);
-            let contentFromService = await this.getArcicleParagraph(articleName, language);
+            let contentFromService = await this.remoteContentManager.getArcicleContent(articleName, language);
             let result = new ArticleDTO(contentFromService, articleName, requestLocalDate.getTime());
-            this.updateCache(result, language); 
+            this.updateCache(result, language);
             return result;
         }
     }
 
-    private updateCache(itemToUpdate : ArticleDTO, language : string) : void { 
+    private updateCache(itemToUpdate: ArticleDTO, language: string): void {
         let keyToUpdate = `${itemToUpdate.articleName}_${language}`;
-        this.cacheManager.putItem(keyToUpdate,itemToUpdate);
+        this.cacheManager.putItem(keyToUpdate, itemToUpdate);
     }
 
     private getValidItemFromCache(articleName: string, language: string, dateToCheck: Date): ArticleDTO | undefined {
@@ -49,26 +50,6 @@ export class ArticlesService implements ArticlesServiceIfs {
         else {
             return itemFromCache;
         }
-    }
-
-    private async getArcicleParagraph(articleName: string, language: string): Promise<string> {
-        let articleUrl = this.getUrlString(articleName, language);
-        console.log(articleUrl);
-        let response = await fetch(articleUrl);
-
-        let jsonData = await response.json();
-        let pagesObj = jsonData['query']['pages'];
-        let keys = Object.keys(pagesObj);
-        let keyName = keys[0];
-        let extractPage = pagesObj[keyName]['extract'];
-        let cleanRes = htmlToText(extractPage);
-        return cleanRes;
-    }
-
-    private getUrlString(articleName: string, language: string): string {
-        let baseUrl = `https://${language}.wikipedia.org/w/api.php?`;
-        let resultUrl = `${baseUrl}action=query&titles=${articleName}&prop=extracts&format=json&exintro=1`;
-        return resultUrl;
     }
 
 }
