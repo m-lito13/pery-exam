@@ -6,6 +6,7 @@ import { RequestValidator } from "./controllers/validators/requestvalidator";
 import { UserTokenService } from "./services/impl/usertokenservice";
 import { CacheManager } from "./services/impl/cachemanager";
 import { TokenManager } from "./services/impl/tokenmanager";
+import { RemoteContentManager } from "./services/impl/remotecontentmanager";
 export const loadContainer = (app: Application) => {
     const Container = createContainer({
         injectionMode: 'CLASSIC'
@@ -15,7 +16,8 @@ export const loadContainer = (app: Application) => {
         requestValidator : asClass(RequestValidator).scoped(),
         userTokenService : asClass(UserTokenService).singleton(),
         cacheManager : asClass(CacheManager).singleton(),
-        tokenManager : asClass(TokenManager).singleton()
+        tokenManager : asClass(TokenManager).singleton(), 
+        remoteContentManager : asClass(RemoteContentManager).scoped()
     });
     app.use(scopePerRequest(Container));
 }
