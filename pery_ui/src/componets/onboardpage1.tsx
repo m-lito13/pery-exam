@@ -59,7 +59,6 @@ function OnBoardPage1(props: OnBoardPropsWrapped) {
                     <Grid size={5}>
                         <div>
                             <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={handleUserNameChanged} />
-
                             <Button variant="contained" onClick={() => handleClick()}>Continue</Button>
                         </div>
                     </Grid>
