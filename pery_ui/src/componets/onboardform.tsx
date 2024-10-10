@@ -8,15 +8,14 @@ import ArticleContentPage from "./articlecontentpage";
 
 
 function OnBoard() {
-    let [tokenRequest, setTokenRequest] = useState({});
-    let [currentDisplayPage, setCurrentDisplay] = useState(0);
+    let [currentStep, setCurrentDisplay] = useState(0);
     let [tokenRequestData, setTokenRequestData] = useState({} as TokenRequestFields);
     let [generatedToken, setGeneratedToken] = useState('');
     let [artcileContent, setArtcileContent] = useState('');
 
     async function handleContinueClick() {
-        let currentDisplayPageUpd = currentDisplayPage++;
-        setCurrentDisplay(currentDisplayPage);
+        let currentStepUpd = currentStep+1;
+        setCurrentDisplay(currentStepUpd);
     }
 
     function updateRequestBody(requestBodyToSet : TokenRequestFields) {
@@ -42,11 +41,11 @@ function OnBoard() {
     let onBoardFormProps : OnBoardPropsWrapped = {commonPageProps : commonProps}
 
     return (
-        <div className="App">
-            {currentDisplayPage === 0 && <OnBoardPage1 commonPageProps={onBoardFormProps.commonPageProps}></OnBoardPage1>}
-            {currentDisplayPage === 1 && <OnBoardPage2 commonPageProps={onBoardFormProps.commonPageProps}></OnBoardPage2>}
-            {currentDisplayPage === 2 && <ArticleSelectPage commonPageProps={onBoardFormProps.commonPageProps}></ArticleSelectPage>}
-            {currentDisplayPage === 3 && <ArticleContentPage articleContent={artcileContent}></ArticleContentPage>}
+        <div>
+            {currentStep === 0 && <OnBoardPage1 commonPageProps={onBoardFormProps.commonPageProps}></OnBoardPage1>}
+            {currentStep === 1 && <OnBoardPage2 commonPageProps={onBoardFormProps.commonPageProps}></OnBoardPage2>}
+            {currentStep === 2 && <ArticleSelectPage commonPageProps={onBoardFormProps.commonPageProps}></ArticleSelectPage>}
+            {currentStep === 3 && <ArticleContentPage articleContent={artcileContent}></ArticleContentPage>}
         </div>
     );
 }

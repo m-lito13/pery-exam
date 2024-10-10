@@ -24,7 +24,8 @@ function OnBoardPage2(props: OnBoardPropsWrapped) {
     return (
         <div className="App">
             <FormControl>
-                <FormLabel id="demo-controlled-radio-buttons-group">Language</FormLabel>
+                <FormLabel>Nice to meet you! </FormLabel>
+                <FormLabel id="demo-controlled-radio-buttons-group">Which language do you prefer to read?</FormLabel>
                 <RadioGroup
                     aria-labelledby="demo-controlled-radio-buttons-group"
                     name="controlled-radio-buttons-group"
@@ -35,8 +36,8 @@ function OnBoardPage2(props: OnBoardPropsWrapped) {
                     <FormControlLabel value="es" control={<Radio />} label="Spanish" />
                     <FormControlLabel value="nl" control={<Radio />} label="Dutch" />
                 </RadioGroup>
+                <Button variant="contained" onClick={() => handleClick()}>Continue</Button>
             </FormControl>
-            <Button variant="contained" onClick={() => handleClick()}>Continue</Button>
         </div>
     );
 }
