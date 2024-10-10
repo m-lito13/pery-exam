@@ -1,4 +1,4 @@
-export class ArticlesResponse { 
+export class ArticleDTO { 
     scrapeDate : number;
     articleName : string;
     introduction : string;    

@@ -1,9 +1,0 @@
-{
-  "dependencies": {
-    "@tsed/exceptions": "^7.83.3",
-    "uuid": "^10.0.0"
-  },
-  "devDependencies": {
-    "@types/uuid": "^10.0.0"
-  }
-}
