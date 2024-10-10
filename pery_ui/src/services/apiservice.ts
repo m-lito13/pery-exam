@@ -1,3 +1,5 @@
+import { json } from "stream/consumers";
+
 const BASE_URL = 'http://localhost:3001';
 export let generateUserToken = async function (user: string, language: string): Promise<string> {
     try {
@@ -11,7 +13,7 @@ export let generateUserToken = async function (user: string, language: string): 
             },
         });
         let jsonData = await response.json();
-        let result = JSON.parse(JSON.stringify(jsonData));
+        let result = jsonData['token'];
         return result;
     }
     catch (err) {
@@ -30,7 +32,7 @@ export let getArticleByName = async function (articleName: string, language: str
             }
         });
         let jsonData = await response.json();
-        let result = JSON.parse(JSON.stringify(jsonData));
+        let result = jsonData['introduction'];
         return result;
     }
     catch(err) { 
@@ -40,4 +42,3 @@ export let getArticleByName = async function (articleName: string, language: str
    
 }
 
-// export default generateUserToken;

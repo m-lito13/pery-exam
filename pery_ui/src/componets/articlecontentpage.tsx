@@ -19,7 +19,7 @@ function ArticleContentPage(props: ArticleContentProps) {
         <div className="App">
             <FormControl>
                 <FormLabel id="demo-controlled-radio-buttons-group">Article Content</FormLabel>
-                <TextField>{props.articleContent}</TextField>
+                <TextField value={props.articleContent}></TextField>
             </FormControl>
             <Button variant="contained" onClick={() => handleClick()}>Continue</Button>
         </div>
