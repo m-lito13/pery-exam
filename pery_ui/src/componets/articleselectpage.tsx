@@ -21,13 +21,13 @@ function ArticleSelectPage(props: OnBoardPropsWrapped) {
     };
 
     return (
-        <div className="App">
-            <Box>
-                <FormLabel id="demo-controlled-radio-buttons-group">Select Article</FormLabel>
-                <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={handleArticleNameChanged} />
-            </Box>
+        <FormControl>
+            <FormLabel id="demo-controlled-radio-buttons-group">What would you like to read about?</FormLabel>
+            <FormLabel id="demo-controlled-radio-buttons-group">Dogs? molecular culinary? everything goes...</FormLabel>
+            <FormLabel id="demo-controlled-radio-buttons-group">Article Subject</FormLabel>
+            <TextField id="outlined-basic" variant="outlined" onChange={handleArticleNameChanged} />
             <Button variant="contained" onClick={() => handleClick()}>Continue</Button>
-        </div>
+        </FormControl>
     );
 }
 

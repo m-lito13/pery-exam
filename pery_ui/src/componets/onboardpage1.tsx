@@ -1,4 +1,4 @@
-import { Box, Button, Container, TextField, Typography } from "@mui/material";
+import { Box, Button, Container, FormControl, FormLabel, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 import { CommonPageProps, OnBoardPropsWrapped } from "./commonpageprops";
 import { TokenRequestFields } from "./tokenrequest";
@@ -46,25 +46,14 @@ function OnBoardPage1(props: OnBoardPropsWrapped) {
     }
 
     return (
-        
-            <ThemeProvider theme={theme}>
-                <Grid container direction ="row" style={{ display: 'flex' }}spacing={2} wrap='nowrap' sx={{ width: '100%' }}>
-                    <Grid>
-                        <Box height='100%'>
-                            <Typography component="div" style={{ backgroundColor: '#cfe8fc' }}>
-                                Welcome to Pery
-                            </Typography>
-                        </Box>
-                    </Grid>
-                    <Grid size={5}>
-                        <div>
-                            <TextField id="outlined-basic" label="Outlined" variant="outlined" onChange={handleUserNameChanged} />
-                            <Button variant="contained" onClick={() => handleClick()}>Continue</Button>
-                        </div>
-                    </Grid>
-                </Grid>
-            </ThemeProvider> 
-            
+        <FormControl>
+            <FormLabel>Love learning new stuff?
+                get an article on any subject you like!
+            </FormLabel>
+            <FormLabel>Type your email address</FormLabel>
+            <TextField id="outlined-basic" variant="outlined" onChange={handleUserNameChanged} />
+            <Button variant="contained" onClick={() => handleClick()}>Continue</Button>
+        </FormControl>
 
     );
 }
